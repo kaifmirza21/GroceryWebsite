@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} {% endblock title %}</title>
+    {% load static %}
+    <link href="{% static './css/style.css' %}" rel="stylesheet">
+    <link href="{% static './css/mediaquery.css' %}" rel="stylesheet">
+    {% block script %} {% endblock script %}
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li class="Logo">Grocery Website</li>
+                <div class="menu-box" id="menu-box">
+                    <li class="nav-right">
+                        <form action="/shop/search" method="get">
+                            <div>
+                                <input type="search" height="60px" name="search" id="search" placeholder="Ex : Milk">
+                                <button class="search-btn" type="submit">Search</button>
+                            </div>
+                        </form>
+                        <div id="cart" class="cart"><a href="#">Cart(<span id="cart-value">0</span>)</a></div>
+                    </li>
+                </div>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        {% block main %} {% endblock main %}
+    </main>
+
+    <footer></footer>
+
+</body>
+</html>

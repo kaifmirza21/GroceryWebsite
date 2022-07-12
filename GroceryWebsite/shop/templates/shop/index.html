@@ -1,0 +1,50 @@
+{% extends 'shop/base.html' %}
+
+{% block title %} Grocery Website {% endblock title  %}
+
+
+{% block script %} 
+    
+    {% load static %}
+    <script src="{% static './Js/index.js' %}"></script>
+{% endblock script %}
+
+{% block main %}
+
+<div class="container-categories">
+    {% for i in categories %}
+        <div class="cat">
+            <img src="{{i.cat_image.url}}" width="80px" height="80px" alt="category">
+            <p><a href="/shop/categories/{{i.cat_ID}}">{{i.cat_name}}</a></p>
+        </div>
+    {% endfor %}
+</div>
+
+<div id="container">
+
+    {% for key,value in dict.items %}
+        <div class="category-products">
+            <h1>{{key}}</h1>
+            <div class="product-container">
+                {% for j in value %}
+                <div class="product" id="productName : {{j.product_name}}">
+                    <div class="product-image" id="imageName : {{j.product_name}}"><img src="{{j.product_image.url}}" width="100px" height="100px" alt="product"></div>
+                    <div class="product-name" id="nameName : {{j.product_name}}"><b>Name : </b>{{j.product_name}}</div>
+                    <div class="product-desc" id="descName : {{j.product_name}}"><b>Description : </b>{{j.product_desc}}</div>
+                    <div class="product-quantity" ><b>Quantity : </b>{{j.product_quantity}}</div>
+                    <div class="product-price" id="priceName : {{j.product_name}}"><b>Price : </b>&#8377;{{j.product_price}}</div>
+                    <div class="product-btn" id="product-btnName : {{j.product_name}}">
+                        <button type="submit" class="view-btn"><a href="/shop/product/{{j.product_ID}}">Quick View</a></button>
+                        <span id="productNoName : {{j.product_name}}"><button type="submit" class="add-to-cart-btn">Add to Cart</button></span>
+                    </div>
+                </div>
+                {% endfor %}  
+            </div>
+            <div class="more">
+                <a href="/shop/categories/{{key.cat_ID}}"><div class="click-for-more"><span> click for more items </span></div></a>
+            </div>  
+        </div>
+
+    {% endfor%}
+</div>
+{% endblock main %}

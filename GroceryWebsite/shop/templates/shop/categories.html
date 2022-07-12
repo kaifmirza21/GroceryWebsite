@@ -1,0 +1,38 @@
+{% extends 'shop/base.html' %}
+
+{% block title %} {{category.cat_name}} - Grocery Website {% endblock title  %}
+
+
+{% block script %} 
+    
+    {% load static %}
+    <script src="{% static './Js/index.js' %}"></script>
+
+{% endblock script %}
+
+{% block main %}
+
+<div class="category-container">
+    <h1>{{category.cat_name}}</h1>
+    <div class="product-container">
+        {% for i in category_products %}
+            <div class="product" id="productName : {{i.product_name}}">
+                <div class="product-image" id="imageName : {{i.product_name}}"><img src="{{i.product_image.url}}" width="100px" height="100px" alt="product"></div>
+                <div class="product-name" id="nameName : {{i.product_name}}" ><b>Name : </b>{{i.product_name}}</div>
+                <div class="product-desc"  id="descName : {{i.product_name}}"><b>Description : </b>{{i.product_desc}}</div>
+                <div class="product-quantity"><b>Quantity : </b>{{i.product_quantity}}</div>
+                <div class="product-price" id="priceName : {{i.product_name}}"><b>Price : </b>&#8377;{{i.product_price}}</div>
+                <div class="product-btn" id="product-btnName : {{i.product_name}}">
+                    <button type="submit" class="view-btn"><a href="/shop/product/{{i.product_ID}}">Quick View</a></button>
+                    <span id="productNoName : {{i.product_name}}"><button type="submit" class="add-to-cart-btn">Add to Cart</button></span>
+                </div>
+            </div>
+            {% if forloop.counter|divisibleby:'6' %}
+                </div>
+                <div class="product-container">
+            {% endif %}
+        {% endfor %}  
+    </div>
+</div>
+
+{% endblock main %}

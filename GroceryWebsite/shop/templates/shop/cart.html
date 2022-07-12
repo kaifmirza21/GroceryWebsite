@@ -1,0 +1,48 @@
+{% extends 'shop/base.html' %}
+
+{% block title %} My Cart | Grocery Website {% endblock title  %}
+
+
+{% block script %} 
+        
+    {% load static %}
+    <script src="{% static './Js/cart.js' %}"></script>
+
+{% endblock script %}
+
+{% block main %}
+
+    <div class="cart-container">
+        <div class="cart-items-display">
+            <h1>My Cart </h1>
+            <br><hr>
+            <div class="cart-items" id="cart-items">
+               
+            </div>
+            <hr>
+            <div class="add-more-items"><a href="/shop">Add more items</a></div>
+        </div>
+        <div class="order-summary">
+            <h2>Order Summary </h2>
+            <div class="summary-box">
+                <div class="item-summary">
+                    <div class="total-items"><span id="no-of-items" class="no-of-items"></span> items</div>
+                    <div class="items-box">&#8377; <span id="items-total-price" class="items-total-price"></span></div>
+                </div>
+                <div class="delivery-charge-summary">
+                    <div class="delivery">Delivery charge </div>
+                    <div class="delivery-box">&#8377; <span id="delivery-charge" class="delivery-charge"></span></div>
+                </div>
+                <div class="final-cost-summary">
+                    <div class="final-cost">Total cost : </div>
+                    <div class="total-cost-box">&#8377; <span id="total-cost-price" class="total-cost-price"></span></div>
+                </div>
+                <div class="checkout-btn">
+                   <a href="checkout"><button id="checkout-btn" type="submit">Proceed to Checkout</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock main %}
+

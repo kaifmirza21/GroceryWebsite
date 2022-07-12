@@ -1,0 +1,67 @@
+{% extends 'shop/base.html' %}
+
+{% block title %} Checkout - Grocery Website {% endblock title  %}
+
+
+{% block script %} 
+    
+    {% load static %}
+    <script src="{% static './Js/cart.js' %}"></script>
+
+{% endblock script %}
+
+{% block main %}
+
+<div class="checkout-container">
+    <h2>Enter the details to place your order.</h2>
+    <br><br>
+<form action="checkout" method="post">
+    {% csrf_token %} 
+    <div class="itemsJson" id="itemsJson">
+        <input type="hidden" name="itemsJSON" class="items-json" id="items-Json" >
+    </div>
+    <div class="name">
+        <h3>Name : </h3><input type="text" name="name" id="name" placeholder="Enter your name">
+    </div><br>
+
+    <div class="email">
+        <h3>Email : </h3>
+        <input type="email" name="email" id="email" placeholder="Enter your email id">
+    </div><br>
+    
+    <div class="address1">
+        <h3>Address : </h3>
+        <input type="text" name="address" id="address" placeholder="Enter your address" >
+    </div><br>
+
+    <div class="address2">
+        <div>
+            <h3>City : </h3>
+            <input type="text" name="city" id="city" placeholder="ex : Mumbai" spellcheck="true">
+        </div>
+        <div>
+            <h3>State : </h3>
+            <input type="text" name="state" id="state" placeholder="ex : Maharashtra" spellcheck="true">
+        </div>
+        <div>
+            <h3>Zip : </h3>
+            <input type="number" name="zip" id="zip" placeholder="Enter zip code">
+        </div>
+    </div><br>
+
+    <div class="number">
+        <h3>Phone number : </h3>
+        <input type="tel" name="number" id="number" placeholder="Enter your phone number" ><br>
+    </div><br>
+
+    <div class="btn">
+        <button type="submit">Place Order</button><br>
+    </div>
+
+</form>
+</div>
+
+<input type="hidden" id="variable-id" value="{{id}}">
+<input type="hidden" id="variable-thanks" value="{{thanks}}">
+{% endblock main %}
+

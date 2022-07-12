@@ -1,0 +1,61 @@
+{% extends 'shop/base.html' %}
+
+{% block title %} {{product.product_name}} - Grocery Website {% endblock title  %}
+
+
+{% block script %} 
+    
+    {% load static %}
+    <script src="{% static './Js/index.js' %}"></script>
+
+{% endblock script %}
+
+{% block main %}
+
+<div class="productView">
+    <div class="productView-container">
+        <div class="container1">
+            <div class="prod-image">
+                <img src="{{product.product_image.url}}" alt="product-image">
+            </div>
+        </div>
+        <div class="container2">
+            <div class="product" style="width: 50vw ; padding: 20px; border : none" id="productName : {{product.product_name}}">
+                <div class="product-name prod-name container2-item" id="nameName : {{product.product_name}}"><b>Name : </b>{{product.product_name}}</div>
+                <div class="prod-price product-price container2-item" id="priceName : {{product.product_name}}"><b>Price : </b>&#8377;{{product.product_price}}</div>
+                <div class="prod-quantity product-quantity container2-item"><b>Quantity : </b>{{product.product_quantity}}</div>
+                <div class="prod-desc product-desc container2-item" id="descName : {{product.product_name}}" style="display:block;" ><b>Description : </b>{{product.product_desc}}</div>
+                <!-- <div class="product-btn container2-item" style="width: 20vw ;justify-content: start;" id="product-btnName : {{product.product_name}}">
+                    <span id="productNoName : {{product.product_name}}"><button type="submit" class="add-to-cart-btn">Add to Cart</button></span>
+                </div> -->
+                <!-- <div class="product-image" style="height: 50px" id="imageName : {{product.product_name}}"><img style="display: none;" src="{{product.product_image.url}}" width="0px" height="0px" alt="product"></div> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="more-items-suggestion">
+    <h1>Similar products like this :</h1>
+    <div class="product-container">
+        {% for i in more_items %}
+            {% if forloop.counter < 7 %}
+                <div class="product" id="productName : {{i.product_name}}">
+                    <div class="product-image"><img src="{{i.product_image.url}}" width="100px" height="100px" alt="product"></div>
+                    <div class="product-name" ><b>Name : </b>{{i.product_name}}</div>
+                    <div class="product-desc"><b>Description : </b>{{i.product_desc}}</div>
+                    <div class="product-quantity"><b>Quantity : </b>{{i.product_quantity}}</div>
+                    <div class="product-price"><b>Price : </b>&#8377;{{i.product_price}}</div>
+                    <div class="product-btn" id="product-btnName : {{i.product_name}}">
+                        <button type="submit" class="view-btn"><a href="/shop/product/{{i.product_ID}}">Quick View</a></button>
+                        <span id="productNoName : {{i.product_name}}"><button type="submit"  class="add-to-cart-btn">Add to Cart</button></span>
+                    </div>
+                </div>
+            {% endif %}  
+        {% endfor %}
+    </div>
+    <div class="more">
+        <a href="/shop/categories/{{prod_category.cat_ID}}"><div class="click-for-more"><span> click for more items </span></div></a>
+    </div>
+</div>
+
+{% endblock main %}
